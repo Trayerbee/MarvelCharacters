@@ -16,12 +16,76 @@
                     <view key="view" contentMode="scaleToFill" id="Jh8-CH-bKw">
                         <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <collectionView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" dataMode="prototypes" translatesAutoresizingMaskIntoConstraints="NO" id="9Xo-BU-bdh">
+                                <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
+                                <color key="backgroundColor" red="0.63921568627450975" green="0.53725490196078429" blue="0.95686274509803915" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                <collectionViewFlowLayout key="collectionViewLayout" minimumLineSpacing="10" minimumInteritemSpacing="10" id="BwJ-GZ-J1G">
+                                    <size key="itemSize" width="159" height="226"/>
+                                    <size key="headerReferenceSize" width="0.0" height="0.0"/>
+                                    <size key="footerReferenceSize" width="0.0" height="0.0"/>
+                                    <inset key="sectionInset" minX="0.0" minY="0.0" maxX="0.0" maxY="0.0"/>
+                                </collectionViewFlowLayout>
+                                <cells>
+                                    <collectionViewCell opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" reuseIdentifier="characterCell" id="5pp-vm-YPK" customClass="MarvelCharacterCollectionViewCell" customModule="Interface" customModuleProvider="target">
+                                        <rect key="frame" x="0.0" y="0.0" width="182" height="231"/>
+                                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                        <view key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" insetsLayoutMarginsFromSafeArea="NO">
+                                            <rect key="frame" x="0.0" y="0.0" width="182" height="231"/>
+                                            <autoresizingMask key="autoresizingMask"/>
+                                            <subviews>
+                                                <imageView userInteractionEnabled="NO" contentMode="scaleAspectFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="fish_thumbnail" translatesAutoresizingMaskIntoConstraints="NO" id="qFx-rU-BNS" customClass="AsyncImageView" customModule="Interface" customModuleProvider="target">
+                                                    <rect key="frame" x="0.0" y="0.0" width="182" height="162.5"/>
+                                                    <constraints>
+                                                        <constraint firstAttribute="width" secondItem="qFx-rU-BNS" secondAttribute="height" multiplier="1.12:1" id="9wa-NH-BOJ"/>
+                                                    </constraints>
+                                                </imageView>
+                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Zcp-hY-zY9">
+                                                    <rect key="frame" x="0.0" y="162.5" width="182" height="68.5"/>
+                                                    <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                                    <nil key="textColor"/>
+                                                    <nil key="highlightedColor"/>
+                                                </label>
+                                            </subviews>
+                                        </view>
+                                        <color key="backgroundColor" red="0.49411764705882355" green="0.35686274509803922" blue="0.93725490196078431" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                        <constraints>
+                                            <constraint firstItem="qFx-rU-BNS" firstAttribute="top" secondItem="5pp-vm-YPK" secondAttribute="top" id="06b-Bg-PZ6"/>
+                                            <constraint firstItem="Zcp-hY-zY9" firstAttribute="top" secondItem="qFx-rU-BNS" secondAttribute="bottom" id="1CB-4J-u0W"/>
+                                            <constraint firstItem="qFx-rU-BNS" firstAttribute="leading" secondItem="5pp-vm-YPK" secondAttribute="leading" id="7ed-2w-UXd"/>
+                                            <constraint firstAttribute="trailing" secondItem="Zcp-hY-zY9" secondAttribute="trailing" id="Aje-Kz-cG6"/>
+                                            <constraint firstAttribute="bottom" secondItem="Zcp-hY-zY9" secondAttribute="bottom" id="Hks-tY-C9L"/>
+                                            <constraint firstAttribute="trailing" secondItem="qFx-rU-BNS" secondAttribute="trailing" id="wic-0q-mZH"/>
+                                            <constraint firstItem="Zcp-hY-zY9" firstAttribute="leading" secondItem="5pp-vm-YPK" secondAttribute="leading" id="xJ1-7z-vgF"/>
+                                        </constraints>
+                                        <size key="customSize" width="182" height="231"/>
+                                        <connections>
+                                            <outlet property="nameLabel" destination="Zcp-hY-zY9" id="NhV-7U-B2U"/>
+                                            <outlet property="thumbnailImageView" destination="qFx-rU-BNS" id="zV9-dS-twD"/>
+                                        </connections>
+                                    </collectionViewCell>
+                                </cells>
+                            </collectionView>
+                        </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                        <constraints>
+                            <constraint firstItem="9Xo-BU-bdh" firstAttribute="leading" secondItem="tmK-io-P51" secondAttribute="leading" id="EtH-Ke-saH"/>
+                            <constraint firstItem="9Xo-BU-bdh" firstAttribute="top" secondItem="Jh8-CH-bKw" secondAttribute="top" id="d4z-Ct-op3"/>
+                            <constraint firstItem="9Xo-BU-bdh" firstAttribute="bottom" secondItem="tmK-io-P51" secondAttribute="bottom" id="hXz-6U-AGo"/>
+                            <constraint firstItem="9Xo-BU-bdh" firstAttribute="trailing" secondItem="tmK-io-P51" secondAttribute="trailing" id="lQt-jC-0zu"/>
+                        </constraints>
                         <viewLayoutGuide key="safeArea" id="tmK-io-P51"/>
                     </view>
+                    <connections>
+                        <outlet property="charactersCollection" destination="9Xo-BU-bdh" id="c1v-vt-uKv"/>
+                    </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="VqJ-Nu-uCo" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
+            <point key="canvasLocation" x="133.59999999999999" y="133.5832083958021"/>
         </scene>
     </scenes>
+    <resources>
+        <image name="fish_thumbnail" width="221" height="198"/>
+    </resources>
 </document>

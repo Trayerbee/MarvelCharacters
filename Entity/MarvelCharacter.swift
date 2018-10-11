@@ -27,6 +27,10 @@ public struct ImageURL: Decodable {
         case path = "path"
         case fileExtension = "extension"
     }
+
+    public var fullPath: String {
+            return path + "." + fileExtension
+    }
 }
 
 public struct ComicBook: Decodable {
