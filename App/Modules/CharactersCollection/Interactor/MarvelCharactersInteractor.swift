@@ -10,10 +10,6 @@ import Foundation
 import Transport
 import Entity
 
-protocol CharactersCollectionViewAPI {
-    var characters: [CharacterCellData] { get set }
-}
-
 public struct CharacterCellData{
     public let name: String
     public let imageURL: String
@@ -26,16 +22,16 @@ public struct CharacterCellData{
 public class MarvelCharactersInteractor {
     private var downloadedCharacters: [MarvelCharacter] = []
 
-    let viewControllerDelegate: CharactersCollectionViewAPI
-    init(with viewControllerDelegate: CharactersCollectionViewAPI) {
-        self.viewControllerDelegate = viewControllerDelegate
-    }
+    var presenter: MarvelCharactesCollectionPresenterAPI?
 
-    func loadCharactersData() {
+    func loadCharactersData(completion: @escaping ([CharacterCellData]) -> ()) {
         MarvelCharactersResponse.getCharacters { [weak self]
             (characters: [MarvelCharacter]) in
-            self?.downloadedCharacters = characters
-
+            guard let strongSelf = self else {
+                return
+            }
+            strongSelf.downloadedCharacters = characters
+            completion(characters.toCellData())
         }
     }
 }

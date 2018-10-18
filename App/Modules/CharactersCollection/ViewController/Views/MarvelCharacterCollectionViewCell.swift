@@ -7,7 +7,7 @@
 //
 
 import UIKit
-import Interactor
+import Shared
 
 class MarvelCharacterCollectionViewCell: UICollectionViewCell {
 

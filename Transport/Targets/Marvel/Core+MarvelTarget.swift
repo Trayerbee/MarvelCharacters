@@ -40,20 +40,26 @@ extension MarvelTarget {
 
 extension MarvelTarget {
 
-    func fetchMarvelData(completion: @escaping (Data?, Error?) throws -> ()) throws {
-        try fetchData { (data, response, error) in
-            try completion(data, error)
+    func fetchMarvelData(completion: @escaping (Data?, Error?) -> ()) {
+        fetchData { (data, response, error) in
+            completion(data, error)
         }
     }
 
-    func fetchMarvelCharacters(completion: @escaping (RawJSONDecodable?) throws -> ()) throws {
+    func fetchMarvelCharacters(completion: @escaping (RawJSONDecodable?) -> ()) {
         try fetchMarvelData { (data, error) in
             guard let data = data else {
                 try completion(nil)
                 return
             }
             let jsonDecoder = JSONDecoder()
-            try completion(try jsonDecoder.decode(RawJSONDecodable.self, from: data))
+            do{
+                let rawJSON = try jsonDecoder.decode(RawJSONDecodable.self, from: data)
+                completion(rawJSON)
+            }
+            catch {
+
+            }
         }
     }
 }

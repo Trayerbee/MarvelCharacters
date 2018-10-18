@@ -111,11 +111,12 @@ extension Target {
 }
 
 extension Target {
-    func fetchData(completion:@escaping (Data?, URLResponse?, Error?) throws -> ()) throws {
+    func fetchData(completion:@escaping (Data?, URLResponse?, Error?) -> ()) {
         guard let request = try? self.request() else {
-            throw Core.Error.malformedRequest
+            completion(nil, nil, Core.Error.malformedRequest)
+            return
         }
-        let dataTask = self.urlSession.dataTask(with: request) { try! completion($0, $1, $2) }
+        let dataTask = self.urlSession.dataTask(with: request) { completion($0, $1, $2) }
         dataTask.resume()
     }
 }

@@ -7,16 +7,18 @@
 //
 
 import UIKit
-import Interactor
 
+public protocol MarvelCharactersCollectionViewAPI {
+    var characters: [CharacterCellData] { get set }
+}
 
-class CharactersCollectionViewController: UIViewController {
+class MarvelCharactersCollectionViewController: UIViewController {
     @IBOutlet private var charactersCollection: UICollectionView!
     private var charactersData: [CharacterCellData] = []
 }
 
 //MARK: Lifecycle
-extension CharactersCollectionViewController {
+extension MarvelCharactersCollectionViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         charactersCollection.dataSource = self
@@ -24,7 +26,7 @@ extension CharactersCollectionViewController {
     }
 }
 
-extension CharactersCollectionViewController: CharactersCollectionViewAPI {
+extension MarvelCharactersCollectionViewController: MarvelCharactersCollectionViewAPI {
     var characters: [CharacterCellData] {
         set{
             charactersData = newValue
@@ -37,7 +39,7 @@ extension CharactersCollectionViewController: CharactersCollectionViewAPI {
 }
 
 //MARK: Collection view delegate
-extension CharactersCollectionViewController: UICollectionViewDelegateFlowLayout, UICollectionViewDelegate {
+extension MarvelCharactersCollectionViewController: UICollectionViewDelegateFlowLayout, UICollectionViewDelegate {
     func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, sizeForItemAt indexPath: IndexPath) -> CGSize {
         // Aspect ratio for cells is 26 : 33
         let width = (collectionView.bounds.size.width-8)/2
@@ -55,7 +57,7 @@ extension CharactersCollectionViewController: UICollectionViewDelegateFlowLayout
 }
 
 //MARK: Collection view datasource
-extension CharactersCollectionViewController: UICollectionViewDataSource {
+extension MarvelCharactersCollectionViewController: UICollectionViewDataSource {
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
         let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "characterCell", for: indexPath) as! MarvelCharacterCollectionViewCell
         cell.setCharacter(data: charactersData[indexPath.row])

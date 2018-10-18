@@ -9,7 +9,7 @@
 import UIKit
 
 class AsyncImageView: UIImageView {
-    public func setImage(with url: URL) {
+    public func setImage(with url: String) {
         
     }
 }
